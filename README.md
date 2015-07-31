@@ -33,11 +33,11 @@ io.write('This text is yellow, background white and italic', 'yellow', 'white', 
 ## io.read(questions, callback)
 
 **questions(Object):** 
-	* **question(String):**
-	* **default(String):**
-	* **format(RegExp):**
-	* **formatError(String):**
-	* **after(Function):**
+* **question(String):**
+* **default(String):**
+* **format(RegExp):**
+* **formatError(String):**
+* **after(Function):**
 
 ```js
 var io = require('io');
