@@ -129,3 +129,4 @@ var io = {};
 			style = (style)?['\u001b['+style[0]+'m', '\u001b['+style[1]+'m']:['',''];
 		process.stdout.write(color[0]+background[0]+style[0]+text+style[1]+background[1]+color[1]+'\n');		
 	};
+exports = module.exports = io;
