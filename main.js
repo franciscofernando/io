@@ -76,7 +76,7 @@ var io = {};
 					}
 				};
 				var returnAfter = q.after.call(next, answer);
-				if(!returnAfter){
+				if(typeof returnAfter === 'undefined'){
 					return false;
 				}
 			}

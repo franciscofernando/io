@@ -47,7 +47,7 @@ var question = {
         format: /^[0-9]+$/,
         formatError: 'The format is incorrect, age:',
         after: function(answer){
-            this.continue();
+            //async: this.continue(); or sync: return true;
         }
 };
 io.read(question, function(answer){
