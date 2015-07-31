@@ -41,17 +41,6 @@ var searchStyle = function(name){
 
 var io = {};
 	io.read = function(questions, callback){
-		/*
-			{
-				question: 'Age: ',
-				defult: '18',
-				format: /^.+$/,
-				formatError: 'The format is incorrect, age:',
-				after: function(answer){
-					...
-				}
-			}
-		*/ 
 		if(!Array.isArray(questions))
 			questions = [questions];
 		var promises;
@@ -86,7 +75,7 @@ var io = {};
 						q.promise.resolve(answer);
 					}
 				};
-				var returnAfter = q.after.call(next, answer); // => this.continue();
+				var returnAfter = q.after.call(next, answer);
 				if(!returnAfter){
 					return false;
 				}
@@ -120,13 +109,19 @@ var io = {};
 		});
 		ask();
 	};
-	io.write = function(text, color, background, style){ // io.write('Text', 'red', 'blue', 'italic');
-		var color = searchColor(color||'white');
-			color = ['\u001b['+color[0]+'m', '\u001b['+color[1]+'m'];
-		var background = searchBackground(background||'black');
-			background = ['\u001b['+background[0]+'m', '\u001b['+background[1]+'m'];
-		var style = searchStyle(style||'');
-			style = (style)?['\u001b['+style[0]+'m', '\u001b['+style[1]+'m']:['',''];
+
+	io.write = function(text, color, background, style){
+		if(typeof color === 'object'){
+			var style = color.style;
+			var background = color.background;
+			var color = color.color;
+		}
+		color = searchColor(color||'white');
+		color = ['\u001b['+color[0]+'m', '\u001b['+color[1]+'m'];
+		background = searchBackground(background||'black');
+		background = ['\u001b['+background[0]+'m', '\u001b['+background[1]+'m'];
+		style = searchStyle(style||'');
+		style = (style)?['\u001b['+style[0]+'m', '\u001b['+style[1]+'m']:['',''];
 		process.stdout.write(color[0]+background[0]+style[0]+text+style[1]+background[1]+color[1]+'\n');		
 	};
 exports = module.exports = io;
