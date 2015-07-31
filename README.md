@@ -78,6 +78,6 @@ var question = {
         }
 };
 io.read(question, function(answer){
-    console.log(answer); // => text of answer
+    io.write('You answer is: '+answer); // => text of answer
 });
 ```
