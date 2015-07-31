@@ -105,7 +105,10 @@ var io = {};
 			arr.forEach(function(val){
 				returnArr.push(val.data);
 			});
-			callback(returnArr);
+			if(returnArr.length > 1)
+				callback(returnArr);
+			else
+				callback(returnArr[0]);
 		});
 		ask();
 	};

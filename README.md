@@ -30,24 +30,27 @@ io.write('This text is yellow, background white and italic', {
 io.write('This text is yellow, background white and italic', 'yellow', 'white', 'italic');
 ```
 
-## io.read(questions, callback)
+## io.read(question/Array question, callback)
 
-**questions(Object):** 
-* **question(String):**
-* **default(String):**
-* **format(RegExp):**
-* **formatError(String):**
-* **after(Function):**
+**question(Object):** It is an object that has the parameters for the terminal Question.
+* **question(String):** Question Text **(Is required)**.
+* **default(String):** Pre-defined text field response.
+* **format(RegExp):** Regular expression that validates the format of the response
+* **formatError(String):** Text format wonders if the input is wrong
+* **after(Function):** Function that runs after the entry of the answer, if you return to continue with the next question if you do not wait to return anything running "this.continue ()"
 
 ```js
 var io = require('io');
 var question = {
-    question: 'Age: ',
-    defult: '18',
-    format: /^.+$/,
-    formatError: 'The format is incorrect, age:',
-    after: function(answer){
-	    this.continue();
-    }
+        question: 'Age: ',
+        defult: '18',
+        format: /^[0-9]+$/,
+        formatError: 'The format is incorrect, age:',
+        after: function(answer){
+            this.continue();
+        }
 };
+io.read(question, function(answer){
+    console.log(answer); // => text of answer
+});
 ```
