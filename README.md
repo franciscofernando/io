@@ -29,6 +29,33 @@ io.write('This text is yellow, background white and italic', {
 //Or
 io.write('This text is yellow, background white and italic', 'yellow', 'white', 'italic');
 ```
+### Colors names
+* black
+* red
+* green
+* yellow
+* blue
+* magenta
+* cyan
+* white
+* gray
+* grey
+
+### Background colors name
+* black
+* red
+* green
+* yellow
+* blue
+* magenta
+* cyan
+* white
+
+### Styles names
+* bold
+* italic
+* underline
+* strikethrough
 
 ## io.read(question/Array question, callback)
 
