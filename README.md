@@ -64,8 +64,8 @@ io.write('This text is yellow, background white and italic', 'yellow', 'white', 
 * **default(String/Object):**
  * **String:** Pre-defined text field response.
  * **Object:**
-  * **text(String): ** Pre-defined text field response.
-  * **style(Object): ** It is an object with the style of the text (like the styles of io.write).
+  * **text(String):** Pre-defined text field response.
+  * **style(Object):** It is an object with the style of the text (like the styles of io.write).
 * **format(RegExp):** Regular expression that validates the format of the response.
 * **formatError(String):** Text format wonders if the input is wrong.
 * **after(Function):** Function that runs after the entry of the answer, if you return to continue with the next question if you do not wait to return anything running "this.continue ()".
