@@ -80,6 +80,11 @@ var question = {
         formatError: 'The format is incorrect, age:',
         after: function(answer){
             //async: this.continue(); or sync: return true;
+        },
+        style: {
+           color: 'yellow',
+           background: 'white',
+           style: 'italic'
         }
 };
 io.read(question, function(answer){
