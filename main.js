@@ -74,7 +74,7 @@ var io = {};
 				}
 			}
 		};
-		var askAction = function(q, answer){
+		var askAction = function(q, answer, question){
 			var thisAction = this;
 			if(q.format){
 				if(!q.format.test(answer)){
@@ -92,7 +92,7 @@ var io = {};
 						q.promise.resolve(answer);
 					}
 				};
-				var returnAfter = q.after.call(next, answer);
+				var returnAfter = q.after.call(next, answer, question);
 				if(typeof returnAfter === 'undefined'){
 					return false;
 				}
@@ -105,7 +105,7 @@ var io = {};
 				q.promise = promises.eq(index++);
 			if(q.question){
 				askMethod(q.question, q.defult, q.style, function(answer){
-					askAction.call(this, q, answer);
+					askAction.call(this, q, answer, q.question);
 				});
 			}
 		};

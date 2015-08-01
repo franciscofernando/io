@@ -78,7 +78,7 @@ var question = {
         defult: '18',
         format: /^[0-9]+$/,
         formatError: 'The format is incorrect, age:',
-        after: function(answer){
+        after: function(answer, question){
             //async: this.continue(); or sync: return true;
         },
         style: {
