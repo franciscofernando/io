@@ -62,8 +62,8 @@ io.write('This text is yellow, background white and italic', 'yellow', 'white', 
 **question(Object):** It is an object that has the parameters for the terminal Question.
 * **question(String):** Question Text **(Is required)**.
 * **default(String/Object):** Pre-defined text field response.
- * **String:** Text field.
- * **Object:** Text field response with styles.
+ * **default(String):** Text field.
+ * **default(Object):** Text field response with styles.
    * **text(String):** Text field response.
     * **style(Object):** It is an object with the style of the text (like the styles of io.write).
 * **format(RegExp):** Regular expression that validates the format of the response.
