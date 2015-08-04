@@ -79,7 +79,13 @@ var question = {
         format: /^[0-9]+$/,
         formatError: 'The format is incorrect, age:',
         after: function(answer, question){
-            //async: this.continue(); or sync: return true;
+            /*
+              async: this.continue(); //Continue with the next question
+                     this.error(); //Use formatError for ask again
+                     this.again(); //Use question for ask again  
+              or 
+              sync: return true;
+            */
         },
         style: {
            color: 'yellow',

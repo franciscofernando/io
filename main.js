@@ -90,6 +90,18 @@ var io = {};
 					continue: function(){
 						thisAction.close();
 						q.promise.resolve(answer);
+					},
+					error: function(){
+						thisAction.close();
+						askMethod(q.formatError, q.defult, q.style, function(answer){
+							askAction.call(thisAction, q, answer);
+						});
+					},
+					again: function(){
+						thisAction.close();
+						askMethod(q.question, q.defult, q.style, function(answer){
+							askAction.call(thisAction, q, answer);
+						});						
 					}
 				};
 				var returnAfter = q.after.call(next, answer, question);
