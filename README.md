@@ -38,7 +38,7 @@ var count = 0,
          io.volatile((count++)+'%', 'cyan');
       else
          clearInterval(timer);
-    }, 1000);
+    }, 100);
 
 ```
 
