@@ -3,7 +3,7 @@
 npm install io
 ```
 
-## io.write(text, color/options, background, style)
+## io.write/io.volatile(text, color/options, background, style)
 
 **text(String):** It is the text that will be printed.
 
@@ -20,6 +20,8 @@ npm install io
 
 ```js
 var io = require('io');
+
+/** io.write **/
 io.write('This text is red', 'red');
 io.write('This text is yellow, background white and italic', {
    color: 'yellow',
@@ -28,7 +30,18 @@ io.write('This text is yellow, background white and italic', {
 });
 //Or
 io.write('This text is yellow, background white and italic', 'yellow', 'white', 'italic');
+
+/** io.volatile **/
+var count = 0,
+    timer = setInterval(function(){
+      if(count+1 <= 100)
+         io.volatile((count++)+'%', 'cyan');
+      else
+         clearInterval(timer);
+    }, 1000);
+
 ```
+
 ### Colors names
 * black
 * red
