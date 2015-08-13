@@ -157,7 +157,7 @@ var io = {};
 	};
 	
 	io.volatile = function(text, color, background, style){
-		process.stderr.clearLine(1);
+		process.stderr.clearLine();
 		process.stderr.cursorTo(0);
 		if(typeof color === 'string'){
 			var styleObj = {
