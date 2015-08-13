@@ -1,0 +1,98 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@2.11.2
+3 info using node@v0.12.5
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec { raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'C:\\git\\io',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\fpoblete\AppData\Roaming\npm-cache\io\0.0.5\package.tgz not in flight; packing
+9 verbose tar pack [ 'C:\\Users\\fpoblete\\AppData\\Roaming\\npm-cache\\io\\0.0.5\\package.tgz',
+9 verbose tar pack   'C:\\git\\io' ]
+10 verbose tarball C:\Users\fpoblete\AppData\Roaming\npm-cache\io\0.0.5\package.tgz
+11 verbose folder C:\git\io
+12 info prepublish io@0.0.5
+13 verbose addLocalTarball adding from inside cache C:\Users\fpoblete\AppData\Roaming\npm-cache\io\0.0.5\package.tgz
+14 silly cache afterAdd io@0.0.5
+15 verbose afterAdd C:\Users\fpoblete\AppData\Roaming\npm-cache\io\0.0.5\package\package.json not in flight; writing
+16 verbose afterAdd C:\Users\fpoblete\AppData\Roaming\npm-cache\io\0.0.5\package\package.json written
+17 silly publish { name: 'io',
+17 silly publish   version: '0.0.5',
+17 silly publish   description: 'io is a module for read or write in console',
+17 silly publish   main: 'main.js',
+17 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+17 silly publish   keywords: [],
+17 silly publish   engines: { node: '*' },
+17 silly publish   repository:
+17 silly publish    { type: 'git',
+17 silly publish      url: 'git+https://github.com/franciscofernando/io.git' },
+17 silly publish   author:
+17 silly publish    { name: 'franciscofernando',
+17 silly publish      email: 'hola@franciscofernando.com' },
+17 silly publish   license: 'MIT',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   dependencies: { 'basic-promise': '0.0.6' },
+17 silly publish   readme: '## Install\r\n```shell\r\nnpm install io\r\n```\r\n\r\n## io.write/io.volatile(text, color/options, background, style)\r\n\r\n**text(String):** It is the text that will be printed.\r\n\r\n**color(String):** It is the color name that will contain the text(Default white).\r\n\r\n**options(Object):** It is an object that contains text styles\r\n* **color(String):** It is the color name that will contain the text(Default white).\r\n* **background(String):** It is the background color name that will contain the text(Default black).\r\n* **style(String):** It is the style that will contain the text.\r\n\r\n**background(String):** It is the background color name that will contain the text(Default black).\r\n\r\n**style(String):** It is the style that will contain the text.\r\n\r\n```js\r\nvar io = require(\'io\');\r\n\r\n/** io.write **/\r\nio.write(\'This text is red\', \'red\');\r\nio.write(\'This text is yellow, background white and italic\', {\r\n   color: \'yellow\',\r\n   background: \'white\',\r\n   style: \'italic\'\r\n});\r\n//Or\r\nio.write(\'This text is yellow, background white and italic\', \'yellow\', \'white\', \'italic\');\r\n\r\n/** io.volatile **/\r\nvar count = 0,\r\n    timer = setInterval(function(){\r\n      if(count+1 <= 100)\r\n         io.volatile((count++)+\'%\', \'cyan\');\r\n      else\r\n         clearInterval(timer);\r\n    }, 100);\r\n\r\n```\r\n\r\n### Colors names\r\n* black\r\n* red\r\n* green\r\n* yellow\r\n* blue\r\n* magenta\r\n* cyan\r\n* white\r\n* gray\r\n* grey\r\n\r\n### Background colors name\r\n* black\r\n* red\r\n* green\r\n* yellow\r\n* blue\r\n* magenta\r\n* cyan\r\n* white\r\n\r\n### Styles names\r\n* bold\r\n* italic\r\n* underline\r\n* strikethrough\r\n\r\n## io.read(question/Array question, callback)\r\n\r\n**question(Object):** It is an object that has the parameters for the terminal Question.\r\n* **question(String):** Question Text **(Is required)**.\r\n* **default(String/Object):** Pre-defined text field response.\r\n * **default(String):** Text field.\r\n * **default(Object):** Text field response with styles.\r\n   * **text(String):** Text field response.\r\n    * **style(Object):** It is an object with the style of the text (like the styles of io.write).\r\n* **format(RegExp):** Regular expression that validates the format of the response.\r\n* **formatError(String):** Text format wonders if the input is wrong.\r\n* **after(Function):** Function that runs after the entry of the answer, if you return to continue with the next question if you do not wait to return anything running "this.continue ()".\r\n* **style(Object):** It is an object with the style of the text (like the styles of io.write).\r\n\r\n```js\r\nvar io = require(\'io\');\r\nvar question = {\r\n        question: \'Age: \',\r\n        defult: \'18\',\r\n        format: /^[0-9]+$/,\r\n        formatError: \'The format is incorrect, age:\',\r\n        after: function(answer, question){\r\n            /*\r\n              async: this.continue(); //Continue with the next question\r\n                     this.error(); //Use formatError for ask again\r\n                     this.again(); //Use question for ask again  \r\n              or \r\n              sync: return true;\r\n            */\r\n        },\r\n        style: {\r\n           color: \'yellow\',\r\n           background: \'white\',\r\n           style: \'italic\'\r\n        }\r\n};\r\nio.read(question, function(answer){\r\n    io.write(\'You answer is: \'+answer); // => text of answer\r\n});\r\n```\r\n',
+17 silly publish   gitHead: 'b44252cfb4e4475995466d37b4ae95a4ba18e0fc',
+17 silly publish   bugs: { url: 'https://github.com/franciscofernando/io/issues' },
+17 silly publish   homepage: 'https://github.com/franciscofernando/io#readme',
+17 silly publish   _id: 'io@0.0.5',
+17 silly publish   _shasum: '58e74231c788a7c04c60b08badf889b56df3a7b1',
+17 silly publish   _from: '.' }
+18 verbose getPublishConfig undefined
+19 silly mapToRegistry name io
+20 silly mapToRegistry using default registry
+21 silly mapToRegistry registry https://registry.npmjs.org/
+22 silly mapToRegistry uri https://registry.npmjs.org/io
+23 verbose publish registryBase https://registry.npmjs.org/
+24 silly publish uploading C:\Users\fpoblete\AppData\Roaming\npm-cache\io\0.0.5\package.tgz
+25 verbose request uri https://registry.npmjs.org/io
+26 verbose request sending authorization for write operation
+27 info attempt registry request try #1 at 17:26:20
+28 verbose request using bearer token for auth
+29 verbose request id 4a69af4691cb2685
+30 http request PUT https://registry.npmjs.org/io
+31 http 403 https://registry.npmjs.org/io
+32 verbose headers { 'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=60',
+32 verbose headers   'content-length': '95',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   date: 'Thu, 13 Aug 2015 21:22:58 GMT',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   connection: 'keep-alive',
+32 verbose headers   'x-served-by': 'cache-jfk1027-JFK',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1439500977.213525,VS0,VE824' }
+33 verbose request invalidating C:\Users\fpoblete\AppData\Roaming\npm-cache\registry.npmjs.org\io on PUT
+34 error publish Failed PUT 403
+35 verbose stack Error: "You cannot publish over the previously published version 0.0.5." : io
+35 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:247:14)
+35 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:170:14)
+35 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:354:22)
+35 verbose stack     at Request.emit (events.js:110:17)
+35 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1207:14)
+35 verbose stack     at Request.emit (events.js:129:20)
+35 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1153:12)
+35 verbose stack     at IncomingMessage.emit (events.js:129:20)
+35 verbose stack     at _stream_readable.js:908:16
+35 verbose stack     at process._tickCallback (node.js:355:11)
+36 verbose statusCode 403
+37 verbose pkgid io
+38 verbose cwd C:\git\io
+39 error Windows_NT 6.3.9600
+40 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+41 error node v0.12.5
+42 error npm  v2.11.2
+43 error code E403
+44 error "You cannot publish over the previously published version 0.0.5." : io
+45 error If you need help, you may report this error at:
+45 error     <https://github.com/npm/npm/issues>
+46 verbose exit [ 1, true ]
