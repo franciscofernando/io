@@ -34,7 +34,7 @@ io.write('This text is yellow, background white and italic', 'yellow', 'white', 
 /** io.volatile **/
 var count = 0,
     timer = setInterval(function(){
-      if(count+1 <= 100)
+      if(count <= 100)
          io.volatile((count++)+'%', 'cyan');
       else
          clearInterval(timer);

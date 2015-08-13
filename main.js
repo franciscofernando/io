@@ -47,7 +47,7 @@ var renderStyle = function(text, style){
 		background = ['\u001b['+background[0]+'m', '\u001b['+background[1]+'m'];
 	var style = searchStyle(style.style||'');
 		style = (style)?['\u001b['+style[0]+'m', '\u001b['+style[1]+'m']:['',''];
-	return (color[0]+background[0]+style[0]+text+style[1]+background[1]+color[1]+'\n');
+	return (color[0]+background[0]+style[0]+text+style[1]+background[1]+color[1]);
 };
 
 var io = {};
@@ -61,13 +61,13 @@ var io = {};
 				input: process.stdin,
 				output: process.stdout
 			});
-			var question = (style)?renderStyle(question, style):question;
+			var question = (style)?renderStyle(question, style)+'\n':question;
 			rl.question(question, function(answer){
 				callback.call(rl, answer);
 			});
 			if(def){
 				if(typeof def === 'object'){
-					var def = (def.style)?renderStyle(def.text, def.style):def.text;
+					var def = (def.style)?renderStyle(def.text, def.style)+'\n':def.text;
 					rl.write(def);
 				}else if(typeof def === 'string'){
 					rl.write(def);
@@ -149,15 +149,15 @@ var io = {};
 				style: style,
 				background: background
 			};
-			process.stdout.write(renderStyle(text, styleObj));
+			process.stdout.write(renderStyle(text, styleObj)+'\n');
 		}else if(typeof color === 'object'){
 			var styleObj = color;
-			process.stdout.write(renderStyle(text, styleObj));
+			process.stdout.write(renderStyle(text, styleObj)+'\n');
 		}
 	};
 	
 	io.volatile = function(text, color, background, style){
-		process.stderr.clearLine();
+		process.stderr.clearLine(1);
 		process.stderr.cursorTo(0);
 		if(typeof color === 'string'){
 			var styleObj = {
