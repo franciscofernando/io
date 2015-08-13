@@ -155,4 +155,20 @@ var io = {};
 			process.stdout.write(renderStyle(text, styleObj));
 		}
 	};
+	
+	io.volatile = function(text, color, background, style){
+		process.stderr.clearLine(1);
+		process.stderr.cursorTo(0);
+		if(typeof color === 'string'){
+			var styleObj = {
+				color: color,
+				style: style,
+				background: background
+			};
+			process.stderr.write(renderStyle(text, styleObj));
+		}else if(typeof color === 'object'){
+			var styleObj = color;
+			process.stderr.write(renderStyle(text, styleObj));
+		}
+	};
 exports = module.exports = io;
